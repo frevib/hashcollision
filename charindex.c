@@ -62,8 +62,8 @@ int main() {
 	int q = 0;
 	int collisions = 0;
 	int intarr_length = (int)(sizeof(intarr)/sizeof(intarr[0]));
-	int collision_nr[10];
-	int collision_char_nr[10];
+	int collision_nr[20];
+	int collision_char_nr[20];
 	while(m < intarr_length) {
 		while(n < intarr_length) {
 			if(m == n) {
@@ -88,10 +88,12 @@ int main() {
 	m = 0;
 
 	printf("\ncollissions: %d", collisions);
+
 	printf("\nCollision nr's:");
 	for(int i=0;collision_nr[i]; i++) {
 		printf("%d,", collision_nr[i]);
 	}
+
 	printf("\ncollision char nr's: ");
 	for(int i=0;collision_nr[i]; i++) {
 		printf("%c,", collision_char_nr[i]+97);
