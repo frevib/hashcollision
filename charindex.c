@@ -17,32 +17,32 @@ int hashme(char* morse) {
 int main() {
 
 	char* arr[27] = {
-	"10111",
-	"111010101",
-	"11101011101",
-	"1110101",
-	"1",
-	"101011101",
-	"111011101",
-	"1010101",
-	"101",
-	"1011101110111",
-	"111010111",
-	"101110101",
-	"1110111",
-	"11101",
-	"11101110111",
-	"10111011101",
-	"1110111010111",
-	"1011101",
-	"10101",
-	"111",
-	"1010111",
-	"101010111",
-	"101110111",
-	"11101010111",
-	"1110101110111",
-	"11101110101"
+	"10111",		//a
+	"111010101",	//b
+	"11101011101",	//c
+	"1110101",		//d
+	"1",			//e
+	"101011101",	//f
+	"111011101",	//g
+	"1010101",		//h
+	"101",			//i
+	"1011101110111",//j
+	"111010111",	//k
+	"101110101",	//l
+	"1110111",		//m
+	"11101",		//n
+	"11101110111",	//o
+	"10111011101",	//p
+	"1110111010111",//q
+	"1011101",		//r
+	"10101",		//s
+	"111",			//t
+	"1010111",		//u
+	"101010111",	//v
+	"101110111",	//w
+	"11101010111",	//x
+	"1110101110111",//y
+	"11101110101"	//z
 	};
 
 
@@ -59,9 +59,11 @@ int main() {
 	int m = 0;
 	int n = 0;
 	int p = 0;
+	int q = 0;
 	int collisions = 0;
 	int intarr_length = (int)(sizeof(intarr)/sizeof(intarr[0]));
-	char* collision_nr;
+	int collision_nr[10];
+	int collision_char_nr[10];
 	while(m < intarr_length) {
 		while(n < intarr_length) {
 			if(m == n) {
@@ -69,8 +71,9 @@ int main() {
 			}
 			else if(intarr[m] == intarr[n]) {
 				collisions++;
-				collision_nr[p] = intarr[m];
-				p++;
+				collision_nr[p++] = intarr[m];
+				collision_char_nr[q++] = m;
+				collision_char_nr[q++] = n;
 				n++;
 			}
 			else {
@@ -81,17 +84,22 @@ int main() {
 		m++;
 	}
 	collision_nr[p] = '\0';
+	collision_char_nr[q] = '\0';
 	m = 0;
 
-	printf("\ncollissions: %d\n", collisions);
-	printf("Collision nr's:");
+	printf("\ncollissions: %d", collisions);
+	printf("\nCollision nr's:");
 	for(int i=0;collision_nr[i]; i++) {
 		printf("%d,", collision_nr[i]);
 	}
-
+	printf("\ncollision char nr's: ");
+	for(int i=0;collision_nr[i]; i++) {
+		printf("%c,", collision_char_nr[i]+97);
+	}
+	
 	// Give max of intarr
 	int max = max_array(intarr, intarr_length);
-	printf("max: %d\n", max);
+	printf("\nmax: %d\n", max);
 
 
 
@@ -110,7 +118,6 @@ int main() {
 	
 
 }
-
 
 
 int max_array(int* intarr, int intarr_length) {
