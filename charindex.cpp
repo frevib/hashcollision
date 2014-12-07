@@ -114,7 +114,7 @@ int main() {
 	
 	// Give maximum int of intarr
 	int max = max_array(intarr, intarr_length);
-	printf("\nmax: %d\n", max);
+	printf("\nmax number: %d\n", max);
 }
 
 // Return maximum number of array
