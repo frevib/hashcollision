@@ -5,6 +5,7 @@
 int max_array(int intarr[], int intarr_length);
 int hashme(char* morse);
 
+// Take morse char* and return number
 int hashme(char* morse) {
 	int total = 0;
 	
@@ -47,6 +48,7 @@ int main() {
 	"11101110101"	//z
 	};
 
+	// Iterate all letters amount of times:
 	int iterations = 2000000;
 
 	CStopWatch guestimate;
@@ -54,9 +56,8 @@ int main() {
 
 	int i = 0;
 	int intarr[27];
-	for(int x =0; x < iterations; x++) {
-		// Loop through zero's and one's
-		//intarr* = NULL;
+	for(int x=0;x < iterations; x++) {
+		// Loop through the morse codes, the zero's and one's
 		i = 0;
 		while(i < 26) {
 			intarr[i] = hashme(arr[i]);
@@ -67,7 +68,7 @@ int main() {
 	guestimate.stopTimer();
 	std::cout << "Time hashing: " << guestimate.getElapsedTime() << std::endl;
 
-	//check for duplicates
+	//check for duplicates (collisions)
 	int m = 0;
 	int n = 0;
 	int p = 0;
@@ -95,50 +96,33 @@ int main() {
 		n = 0;
 		m++;
 	}
-	collision_nr[p] = '\0';
+	collision_nr[++p] = '\0';
 	collision_char_nr[q] = '\0';
 	m = 0;
 
-	printf("\ncollissions: %d", collisions);
+	printf("collissions: %d\n", collisions);
 
-	printf("\nCollision nr's:");
+	printf("Collision nr's: ");
 	for(int i=0;collision_nr[i]; i++) {
 		printf("%d,", collision_nr[i]);
 	}
 
 	printf("\ncollision char nr's: ");
 	for(int i=0;collision_char_nr[i]; i++) {
-		printf("%c,", collision_char_nr[i]+97);
+		printf("%c,", collision_char_nr[i]+96);
 	}
 	
-	// Give max of intarr
+	// Give maximum int of intarr
 	int max = max_array(intarr, intarr_length);
 	printf("\nmax: %d\n", max);
-
-
-
-	// printf("size array: %d\n", (sizeof(intarr)/sizeof(intarr[0])) );
-
-	// for(int i=0; *arr[i]; i++) {
-	// 	// int i = 1;
-	// 	//int total = 0;
-	// 	printf("%s\n", arr[i]);
-	// 	// for(; *arr; arr++) {
-	// 	// 	total += (*a - '0')*i;
-	// 	// 	i++;
-	// 		//printf("%d\n", *a - '0');
-	// 	}
-		//printf("%d\n", total);
-	
-
 }
 
-
+// Return maximum number of array
 int max_array(int* intarr, int intarr_length) {
-	int i, max=-32000;
-	for(i=0; i<intarr_length; i++) {
-		if(intarr[i]>max) {
-			max=intarr[i];
+	int i, max=0;
+	for(i=0; i < intarr_length; i++) {
+		if(intarr[i] > max) {
+			max = intarr[i];
 		}
 	}
 	return max;
