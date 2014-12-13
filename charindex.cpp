@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <limits.h>
 #include <iostream>
 #include "timer.h"
 
-int max_array(int intarr[], int intarr_length);
+int max_array(int *intarr, int intarr_length);
+int min_array(int *intarr, int intarr_length);
 int hashme(char* morse);
 
 // Take morse char* and return number
@@ -10,8 +12,9 @@ int hashme(char* morse) {
 	int total = 0;
 	
 	// This is the algorithm!!
-	for(int i=0; morse[i]; i++) {
-		total += ((morse[i] - '0') * (i+2) * i);
+	for(int i=0 ; *morse; morse++, i++) {
+		//total += ((*morse - '0') * (i+2) * i);
+		total += ((*morse - '0') << i);
 	}
 	return total;
 }
@@ -48,7 +51,7 @@ int main() {
 	"11101110101"	//z
 	};
 
-	// Iterate all letters amount of times:
+	// Iterate all letters, 'iteration' amount of times:
 	int iterations = 2000000;
 
 	CStopWatch guestimate;
@@ -112,9 +115,23 @@ int main() {
 		printf("%c,", collision_char_nr[i]+96);
 	}
 	
+	// Give minimum int of intarr
+	int min = min_array(intarr, intarr_length);
+	printf("\nmin number: %d\n", min);
+
 	// Give maximum int of intarr
 	int max = max_array(intarr, intarr_length);
-	printf("\nmax number: %d\n", max);
+	printf("max number: %d\n", max);
+}
+
+int min_array(int* intarr, int intarr_length) {
+	int i, min=INT_MAX;
+	for(i=0; i < intarr_length; i++) {
+		if(intarr[i] < min) {
+			min = intarr[i];
+		}
+	}
+	return min;
 }
 
 // Return maximum number of array
