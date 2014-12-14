@@ -41,9 +41,10 @@ and run the program:
 
 output:
 ```
-Time hashing: 1.38204
+Time hashing: 1.47802
 collissions: 2
-Collision nr's:
-collision char nr's: d,z,z,d,
-max number: 669
+Collision nr's: 64,64,
+collision char nr's: o,w,w,o,
+min number: 3
+max number: 93
 ```
