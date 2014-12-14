@@ -5,6 +5,7 @@
 
 int max_array(int *intarr, int intarr_length);
 int min_array(int *intarr, int intarr_length);
+int exists_in_array(int intarr[], int number);
 int hashme(char* morse);
 
 // Take morse char* and return number
@@ -15,7 +16,7 @@ int hashme(char* morse) {
     for(int i=0 ; *morse; morse++, i++) {
         //total += ((*morse - '0') << i); // 0 collisions, max nr 7645
         //total += ((*morse - '0') * (i+2)); // 1 collision, max nr 83
-        total += ((*morse - '0') * (i+3));
+        total += ((*morse - '0') * (i+2));
     }
     return total;
 }
@@ -53,7 +54,7 @@ int main() {
     };
     
     // Iterate all letters, 'iteration' amount of times:
-    int iterations = 2000000;
+    int iterations = 200000;
     
     CStopWatch guestimate;
     guestimate.startTimer();
@@ -73,10 +74,8 @@ int main() {
     std::cout << "Time hashing: " << guestimate.getElapsedTime() << std::endl;
     
     //check for duplicates (collisions)
-    int m = 0;
-    int n = 0;
-    int p = 0;
-    int q = 0;
+    int m = 0, n = 0;
+    int p = 0, q = 0;
     int collisions = 0;
     int intarr_length = (int)(sizeof(intarr)/sizeof(intarr[0]));
     int collision_nr[20];
@@ -97,8 +96,8 @@ int main() {
                 n++;
             }
         }
-        n = 0;
         m++;
+        n = m;
     }
     collision_nr[++p] = '\0';
     collision_char_nr[q] = '\0';
@@ -139,10 +138,21 @@ int min_array(int intarr[], int intarr_length) {
 // Return maximum number of array
 int max_array(int intarr[], int intarr_length) {
     int i, max=0;
-    for(i=0; i < intarr_length; i++) {
+    for(i=0; i < intarr_length - 1; i++) {
         if(intarr[i] > max) {
             max = intarr[i];
         }
     }
     return max;
+}
+
+// Check if int exists in int array
+int exists_in_array(int intarr[], int number, int intarr_length) {
+    //int intarr_length = (int)(sizeof(intarr)/sizeof(intarr[0]));
+    for (int i=0; i < intarr_length; i++) {
+        if (intarr[i] == number) {
+            return 1;
+        }
+    }
+    return 0;
 }
