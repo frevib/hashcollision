@@ -145,14 +145,3 @@ int max_array(int intarr[], int intarr_length) {
     }
     return max;
 }
-
-// Check if int exists in int array
-int exists_in_array(int intarr[], int number, int intarr_length) {
-    //int intarr_length = (int)(sizeof(intarr)/sizeof(intarr[0]));
-    for (int i=0; i < intarr_length; i++) {
-        if (intarr[i] == number) {
-            return 1;
-        }
-    }
-    return 0;
-}
